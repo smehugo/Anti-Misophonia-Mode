@@ -4,23 +4,51 @@
 <head>
     <style>
         body {
-            width: 200px;
-            padding: 10px;
+            width: 260px;
+            padding: 8px;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 8px;
+            margin-bottom: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .toggle-container {
             display: flex;
             align-items: center;
-            margin: 8px 0;
+            margin: 6px 0;
             gap: 8px;
         }
 
         .switch {
             position: relative;
             display: inline-block;
-            width: 40px;
+            width: 36px;
             height: 20px;
         }
 
@@ -34,9 +62,9 @@
             position: absolute;
             cursor: pointer;
             inset: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: .3s;
+            border-radius: 24px;
         }
 
         .slider:before {
@@ -47,26 +75,27 @@
             left: 2px;
             bottom: 2px;
             background-color: white;
-            transition: .4s;
+            transition: .3s;
             border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         input:checked+.slider {
-            background-color: #2196F3;
+            background-color: #4CAF50;
         }
 
         input:checked+.slider:before {
-            transform: translateX(20px);
+            transform: translateX(16px);
         }
 
         label {
-            font-size: 14px;
+            font-size: 12px;
+            font-weight: 500;
+            flex: 1;
         }
 
-        .slider-container {
-            margin-top: 12px;
-            padding: 8px 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        .control-group {
+            margin: 6px 0;
         }
 
         .range-slider {
@@ -74,58 +103,133 @@
             width: 100%;
             height: 4px;
             border-radius: 2px;
-            background: #ddd;
+            background: rgba(255, 255, 255, 0.3);
             outline: none;
-            margin: 8px 0;
+            margin: 4px 0;
         }
 
         .range-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: #2196F3;
+            background: white;
             cursor: pointer;
-            transition: background .2s;
+            transition: all .2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
         }
 
         .range-slider::-webkit-slider-thumb:hover {
-            background: #1976D2;
+            transform: scale(1.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
         .slider-label {
-            font-size: 12px;
-            color: #666;
+            font-size: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .mode-selector {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 4px 0;
+        }
+
+        .mode-option {
+            flex: 1;
+            padding: 6px 8px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mode-option.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .mode-option:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
 
 <body>
-    <div class="toggle-container">
-        <label class="switch">
-            <input type="checkbox" id="enableProcessing" checked>
-            <span class="slider"></span>
-        </label>
-        <label for="enableProcessing">Click Removal</label>
-    </div>
-    <div class="toggle-container">
-        <label class="switch">
-            <input type="checkbox" id="showDebug">
-            <span class="slider"></span>
-        </label>
-        <label for="showDebug">Show Debug</label>
-    </div>
-    <div class="slider-container">
-        <div class="slider-label">
-            <span>Sensitivity</span>
-            <span id="sensitivityValue">100%</span>
+    <h1>Misophonia Mode</h1>
+    
+    <div class="section">
+        <div class="section-title">controls</div>
+        
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="enableProcessing" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="enableProcessing">enabled</label>
         </div>
-        <input type="range" class="range-slider" id="sensitivitySlider" min="50" max="150" value="100">
+        
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="showDebug">
+                <span class="slider"></span>
+            </label>
+            <label for="showDebug">debug</label>
+        </div>
+        
+        <div class="mode-selector">
+            <button class="mode-option active" data-mode="click" id="clickMode">click</button>
+            <button class="mode-option" data-mode="smack" id="smackMode">smack</button>
+        </div>
     </div>
+
+    <div class="section">
+        <div class="section-title">settings</div>
+        
+        <div class="control-group">
+            <div class="slider-label">
+                <span>sensitivity</span>
+                <span id="sensitivityValue">0.8</span>
+            </div>
+            <input type="range" class="range-slider" id="sensitivitySlider" min="0.1" max="2.0" step="0.1" value="0.8">
+        </div>
+        
+        <div class="control-group">
+            <div class="slider-label">
+                <span>frequency</span>
+                <span id="frequencySkewValue">mouth</span>
+            </div>
+            <input type="range" class="range-slider" id="frequencySkewSlider" min="-1.0" max="1.0" step="0.1" value="0.0">
+        </div>
+        
+        <div class="control-group">
+            <div class="slider-label">
+                <span>widening</span>
+                <span id="clickWideningValue">5ms</span>
+            </div>
+            <input type="range" class="range-slider" id="clickWideningSlider" min="1" max="20" step="1" value="5">
+        </div>
+        
+        <div class="control-group">
+            <div class="slider-label">
+                <span>reduction</span>
+                <span id="reductionAmountValue">complete</span>
+            </div>
+            <input type="range" class="range-slider" id="reductionAmountSlider" min="-60" max="0" step="3" value="-60">
+        </div>
+    </div>
+     <p style="font-size: 8px; color: rgba(255,255,255,0.6); text-align: center; margin: 4px 0 0 0;">v1.1</p>
+
     <script src="popup.js"></script>
 </body>
 
