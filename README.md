@@ -1,4 +1,4 @@
-# Advanced Mouth De-Click Pro
+# Misophonia Mode
 
 A professional-grade Chrome extension that eliminates mouth clicks, lip smacks, and saliva sounds from video audio using advanced audio processing algorithms. Perfect for users with misophonia or anyone seeking crystal-clear audio quality.
 
@@ -163,7 +163,7 @@ The extension implements a sophisticated multi-stage detection and repair system
 
 ## Privacy
 
-Advanced Mouth De-Click Pro is completely privacy-focused:
+Misophonia Mode is completely privacy-focused:
 - **100% Local Processing**: All audio analysis happens on your device
 - **No Data Collection**: Zero telemetry or usage tracking
 - **No Network Requests**: Extension works entirely offline

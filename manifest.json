@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Advanced Mouth De-Click Pro",
+    "name": "Misophonia Mode",
     "version": "1.1",
     "description": "Professional-grade mouth click removal using advanced audio processing algorithms for crystal clear audio",
     "permissions": [
@@ -10,16 +10,14 @@
     "action": {
         "default_popup": "popup.html"
     },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content.js"
-            ]
-        }
-    ],
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "content.js"
+        ]
+    }],
     "icons": {
         "128": "icon128.png"
     }
